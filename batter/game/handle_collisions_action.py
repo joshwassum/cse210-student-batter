@@ -6,7 +6,7 @@ from game.point import Point
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
-    
+
     Stereotype:
         Controller
     """
@@ -34,9 +34,16 @@ class HandleCollisionsAction(Action):
 
     # Brian
     def _handle_paddle(self, paddle, ball):
-        pass
-        # Needs to loop through the length of the paddle and compare its position with the position of the ball.
-        # If the ball postition is equal to any portion of the paddle, bounce.
+        """This function checks to see if the ball quardanet is equal to the paddle. If it is then the ball velocity is reversed.
+
+        Args:
+                paddle and ball are in the cast dictionary with lists as their key.
+        """
+
+        for paddles in paddle:
+            if ball.get_position().equals(paddles.get_position()):
+                ball.set_velocity(Point.reverse)
+
 
     # Vanessa
     def _handle_bricks(self, bricks, ball):
@@ -46,21 +53,30 @@ class HandleCollisionsAction(Action):
 
     # Brian
     def _handle_ball_constraints(self, ball):
-        pass
-        # Needs to find the position of the ball.
-        # Then grab the y value of the ball.
-        # The check to see if y equals 0 + 1
-        # if yes, bounce the ball.
-        # Find the x value of ball.
-        # if x equal 0 or Max_X bounce.
+        """
+        This function determens if the ball hits the walls or ceiling and reverse the direction of the ball
+
+        Args:
+            ball ([dict]): ball is part of dictionary with a list for its key
+        """
+
+        if ball.get_position(Point.get_x()) <=  0 or  ball.get_position(Point.get_x()) >= constants.MAX_X:
+            ball.set_velocity(Point.reverse_x())
+        elif ball.get_position(Point.get_y())  >= 0 +1:
+            ball.set_velocity(Point.reverse_y())
+
+
 
     # Brian
     def _handle_floor(self, ball):
-        pass
-        # Needs to find the position of the ball.
-        # Then grab the y value of the ball.
-        # The check to see if y equals of MAX_Y
-        # Exit the system
+        """This function determins if the ball falls below the paddle and the game is over.
+
+        Args:
+            ball ([dict]): ball is part of dictionary with a list for its key
+        """
+        if ball.get_position(Point.get_y()) >= constants.MAX_Y + 1:
+            sys.exit()
+
 
     # Brian
     def _handle_paddle_constraints(self, paddle):
