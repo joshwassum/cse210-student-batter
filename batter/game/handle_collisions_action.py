@@ -17,14 +17,20 @@ class HandleCollisionsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-        # Need to create the ball
-        # Need to create the paddle
-        # need to create a list of the bricks
-        # Call handle bricks function
-        # Call handle paddel function
-        # Call handle ball constraints
-        # Call handle floor function
-        # Call handle paddle function
+  
+     
+        ball = cast["ball"][0]
+        paddle = cast["paddle"][0]
+        brick = cast["brick"]
+        self._handle_bricks()
+        self._handle_paddle()
+        self._handle_ball_constraints()
+        self._handle_floor()
+        self._handle_paddle_constraints()
+        for brick in brick:
+            if ball.get_position().equals(brick.get_position()):
+                description = brick.get_description()
+                ball.set_text(description)
 
     # Brian
     def _handle_paddle(self, paddle, ball):
