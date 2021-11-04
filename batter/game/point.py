@@ -9,10 +9,10 @@ class Point:
         _x (integer): The horizontal distance.
         _y (Point): The vertical distance.
     """
-    
+
     def __init__(self, x, y):
         """The class constructor.
-        
+
         Args:
             x (integer): A horizontal distance.
             y (integer): A vertical distance.
@@ -39,14 +39,14 @@ class Point:
         Args:
             other (Point): The Point to compare.
 
-        Returns: 
+        Returns:
             boolean: True if both x and y are equal; false if otherwise.
         """
         return self._x == other.get_x() and self._y == other.get_y()
 
     def get_x(self):
         """Gets the horizontal distance.
-        
+
         Returns:
             integer: The horizontal distance.
         """
@@ -54,7 +54,7 @@ class Point:
 
     def get_y(self):
         """Gets the vertical distance.
-        
+
         Returns:
             integer: The vertical distance.
         """
@@ -62,15 +62,15 @@ class Point:
 
     def is_zero(self):
         """Whether or not the point is zero or x = 0 and y = 0.
-        
+
         Returns:
             boolean: True if x = 0 and y = 0; false if otherwise.
         """
         return self._x == 0 and self._y == 0
-        
+
     def reverse(self):
         """Gets a new Point that is the reverse of this one.
-        
+
         Returns:
             Point: A new Point that is reversed.
         """
@@ -80,7 +80,7 @@ class Point:
 
     def reverse_x(self):
         """Gets a new Point that is the reverse of this one.
-        
+
         Returns:
             Point: A new Point that is reversed.
         """
@@ -90,7 +90,7 @@ class Point:
 
     def reverse_y(self):
         """Gets a new Point that is the reverse of this one.
-        
+
         Returns:
             Point: A new Point that is reversed.
         """

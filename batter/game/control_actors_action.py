@@ -4,7 +4,7 @@ from game.action import Action
 class ControlActorsAction(Action):
     """A code template for controlling actors. The responsibility of this
     class of objects is translate user input into some kind of intent.
-    
+
     Stereotype:
         Controller
 
@@ -14,7 +14,7 @@ class ControlActorsAction(Action):
 
     def __init__(self, input_service):
         """The class constructor.
-        
+
         Args:
             input_service (InputService): An instance of InputService.
         """
