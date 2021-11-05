@@ -25,6 +25,7 @@ class OutputService:
         self._screen.clear_buffer(7, 0, 0)
         self._screen.print_at("-" * constants.MAX_X, 0, 0, 7)
         self._screen.print_at("-" * constants.MAX_X, 0, constants.MAX_Y, 7)
+        self._screen.print_at("Score: ", 0, 1)
         
     def draw_actor(self, actor):
         """Renders the given actor's text on the screen.

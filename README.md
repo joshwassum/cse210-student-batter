@@ -41,3 +41,4 @@ root                    (project root folder)
 ---
 * # TODO: Add your names and emails here
 vanessa buzzell buz20001@byui.edu
+Larry Copeland cop21004@byui.edu

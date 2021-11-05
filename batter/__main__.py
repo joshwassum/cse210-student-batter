@@ -16,6 +16,11 @@ def main(screen):
     # create the cast {key: tag, value: list}
     cast = {}
 
+    marquee = Actor()
+    marquee.set_text("0")
+    marquee.set_position(Point(8, 1))
+    cast["marquee"] = [marquee]
+
     x = int(constants.MAX_X / 2)
     y = int(constants.MAX_Y - 1)
     position = Point(x, y)
@@ -28,9 +33,11 @@ def main(screen):
     for x in range(5, 75):
         for y in range(2, 6):
             position = Point(x, y)
+            points = (constants.POINTS)
             brick = Actor()
             brick.set_text("*")
             brick.set_position(position)
+            brick.set_points(points)
             cast["brick"].append(brick)
 
     x = int(constants.MAX_X / 2)

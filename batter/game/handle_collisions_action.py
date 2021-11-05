@@ -21,13 +21,15 @@ class HandleCollisionsAction(Action):
      
         ball = cast["ball"][0]
         paddle = cast["paddle"][0]
-        brick = cast["brick"]
+        bricks = cast["brick"]
+        marquee = cast["marquee"][0]
         self._handle_bricks()
         self._handle_paddle()
         self._handle_ball_constraints()
         self._handle_floor()
         self._handle_paddle_constraints()
-        for brick in brick:
+        self._update_score(ball, bricks, marquee)
+        for brick in bricks:
             if ball.get_position().equals(brick.get_position()):
                 description = brick.get_description()
                 ball.set_text(description)
@@ -85,3 +87,11 @@ class HandleCollisionsAction(Action):
     # Compare paddle to 0.
     # less then zero set paddle start back to zero
     # If the paddle became more then 69 then reset back to 69
+
+    def _update_score(self, ball, bricks, marquee):
+        
+        for brick in bricks:
+            if ball.get_position().equals(brick.get_position()):
+                points = brick.get_points()
+                marquee.add_points(points)
+                marquee.set_text(marquee.get_points())

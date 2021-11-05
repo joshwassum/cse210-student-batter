@@ -8,7 +8,7 @@ class Actor:
         Information Holder
 
     Attributes:
-        _tag (string): The actor's tag.
+        _points (number): The actor's points.
         _text (string): The textual representation of the actor.
         _position (Point): The actor's position in 2d space.
         _velocity (Point): The actor's speed and direction.
@@ -16,19 +16,13 @@ class Actor:
 
     def __init__(self):
         """The class constructor."""
-        self._description = ""
+        self._points = 0
         self._text = ""
         self._tag = ""
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
 
-    def get_description(self):
-        """Gets the artifact's description.
-
-        Returns:
-            string: The artifact's description.
-        """
-        return self._description
+    
 
     def get_position(self):
         """Gets the actor's position in 2d space.
@@ -53,14 +47,6 @@ class Actor:
             Point: The actor's speed and direction.
         """
         return self._velocity
-
-    def set_description(self, description):
-        """Updates the actor's description to the given one.
-
-        Args:
-            description (string): The given description.
-        """
-        self._description = description
 
     def set_position(self, position):
         """Updates the actor's position to the given one.
@@ -89,3 +75,30 @@ class Actor:
     def set_tag(self, text):
 
         self._tag = text
+    
+    def get_points(self):
+        """Gets the actor's point value.
+        
+        Returns:
+            integer: The actor's point value.
+        """
+        return self._points 
+    
+    def set_points(self, points):
+        """Updates the actor's points to the given value.
+        
+        Args:
+            integer (integer): The given value.
+        """
+        self._points = points  
+
+    def add_points(self, points):
+
+        """Adds the given points to the running total and updates the text.
+        
+        Args:
+            self (Score): An instance of Score.
+            points (integer): The points to add.
+        """
+
+        self._points += points
