@@ -73,6 +73,11 @@ class Actor:
         self._velocity = velocity
 
     def set_tag(self, text):
+        """Updates the tag of our dictionary items.
+
+        Args:
+            text ([str]): The string to set the tag to.
+        """
 
         self._tag = text
     
