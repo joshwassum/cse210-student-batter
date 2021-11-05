@@ -99,6 +99,12 @@ class Point:
         return Point(x, y)
 
     def random_point(self):
+        """Generates a random point.
+
+        Args:
+            self (Point): An instance of Point.
+        """
+
         x = random.randint(0 ,1)
         y = 1
         return Point(x,y)
