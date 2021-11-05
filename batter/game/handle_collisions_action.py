@@ -41,11 +41,13 @@ class HandleCollisionsAction(Action):
         Args:
                 paddle and ball are in the cast dictionary with lists as their key.
         """
+        x = paddle.Point.get_x
+        y = paddle.Point.get_y
 
         for i in range(0,11):
-            if ball.get_x().equals(paddle.get_x() + i):
+            if ball.get_x().equals(Point(x,y)):
                 ball.set_velocity(Point.reverse)
-
+            x += i
 
     # Vanessa
     def _handle_bricks(self, bricks, ball):
