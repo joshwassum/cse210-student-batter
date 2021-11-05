@@ -33,6 +33,7 @@ class HandleCollisionsAction(Action):
             if ball.get_position().equals(brick.get_position()):
                 description = brick.get_description()
                 ball.set_text(description)
+                
 
     # Brian
     def _handle_paddle(self, paddle, ball):
@@ -58,7 +59,7 @@ class HandleCollisionsAction(Action):
     # Brian
     def _handle_ball_constraints(self, ball):
         """
-        This function determens if the ball hits the walls or ceiling and reverse the direction of the ball
+        This function determines if the ball hits the walls or ceiling and reverse the direction of the ball
 
         Args:
             ball ([dict]): ball is part of dictionary with a list for its key
@@ -75,7 +76,7 @@ class HandleCollisionsAction(Action):
 
     # Brian
     def _handle_floor(self, ball):
-        """This function determins if the ball falls below the paddle and the game is over.
+        """This function determines if the ball falls below the paddle and the game is over.
 
         Args:
             ball ([dict]): ball is part of the cast dictionary with a list for its key
@@ -108,7 +109,11 @@ class HandleCollisionsAction(Action):
     # If the paddle became more then 69 then reset back to 69
 
     def _update_score(self, ball, bricks, marquee):
-        
+        """This function gets the point value from the brick and adds it to the score. Then updates the marquee.
+
+            Args:
+                marquee ([dict]): marquee is part of the cast dictionary with a list for its key
+        """
         for brick in bricks:
             if ball.get_position().equals(brick.get_position()):
                 points = brick.get_points()
