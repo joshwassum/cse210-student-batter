@@ -17,8 +17,8 @@ class HandleCollisionsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-  
-     
+
+
         ball = cast["ball"][0]
         paddle = cast["paddle"][0]
         brick = cast["brick"]
@@ -40,8 +40,8 @@ class HandleCollisionsAction(Action):
                 paddle and ball are in the cast dictionary with lists as their key.
         """
 
-        for paddles in paddle:
-            if ball.get_position().equals(paddles.get_position()):
+        for i in range(0,11):
+            if ball.get_x().equals(paddle.get_x() + i):
                 ball.set_velocity(Point.reverse)
 
 
@@ -60,9 +60,11 @@ class HandleCollisionsAction(Action):
             ball ([dict]): ball is part of dictionary with a list for its key
         """
 
-        if ball.get_position(Point.get_x()) <=  0 or  ball.get_position(Point.get_x()) >= constants.MAX_X:
+        if ball.get_x() <=  0:
             ball.set_velocity(Point.reverse_x())
-        elif ball.get_position(Point.get_y())  >= 0 +1:
+        elif ball.get_x() >= constants.MAX_X:
+            ball.set_velocity(Point.reverse_x())
+        elif ball.get_y()  >= 0 +1:
             ball.set_velocity(Point.reverse_y())
 
 
@@ -72,16 +74,25 @@ class HandleCollisionsAction(Action):
         """This function determins if the ball falls below the paddle and the game is over.
 
         Args:
-            ball ([dict]): ball is part of dictionary with a list for its key
+            ball ([dict]): ball is part of the cast dictionary with a list for its key
         """
-        if ball.get_position(Point.get_y()) >= constants.MAX_Y + 1:
+        if ball.get_y() >= constants.MAX_Y + 1:
             sys.exit()
 
 
     # Brian
     def _handle_paddle_constraints(self, paddle):
-        pass
-    # Needs to get the position of the paddle.
-    # Compare paddle to 0.
-    # less then zero set paddle start back to zero
-    # If the paddle became more then 69 then reset back to 69
+
+        """This function will loop through the paddle location plus 11 to see if the ball hits the paddle.
+
+            Args:
+                paddle ([dict]): paddle is part of the cast dictionary with a list for its key
+        """
+        paddle_x = paddle.get_x()
+        x = int(constants.MAX_X - 1)
+        y = int(constants.MAX_Y - 1)
+
+        if paddle_x < 0:
+            paddle.set_position(0, y)
+        elif paddle_x > x - 10:
+            paddle.set_position(x, y)
