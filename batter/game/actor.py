@@ -18,7 +18,6 @@ class Actor:
         """The class constructor."""
         self._points = 0
         self._text = ""
-        self._tag = ""
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
 

@@ -10,7 +10,7 @@ class InputService:
 
     Attributes:
         _screen (Screen): An Asciimatics screen.
-        _keys (list): Points for up, dn, lt, rt.
+        _keys (list): Points for left, right.
     """
 
     def __init__(self, screen):
