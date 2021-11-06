@@ -39,6 +39,7 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add your names and emails here
-vanessa buzzell buz20001@byui.edu
+Josh Wassum was21005@byui.edu
+Brian Bawden brianbawden001@gmail.com
+Vanessa Buzzell buz20001@byui.edu
 Larry Copeland cop21004@byui.edu

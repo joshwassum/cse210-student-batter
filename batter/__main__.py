@@ -1,3 +1,6 @@
+    """Puprose of main is to gather together the various game requirements and put them into a cast.
+    """
+
 from game import constants
 from game.director import Director
 from game.actor import Actor
@@ -11,6 +14,12 @@ from game.output_service import OutputService
 from asciimatics.screen import Screen 
 
 def main(screen):
+
+    """main activates the game and its various functions by gathering the various componenets of the app.
+    It then groups them in to various sub groups and creates a script for the director to execute.
+    Args:
+        screen (Screen): The screens parameters.
+    """
 
     # create the cast {key: tag, value: list}
     cast = {}
