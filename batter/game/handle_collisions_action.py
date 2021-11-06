@@ -23,43 +23,45 @@ class HandleCollisionsAction(Action):
         paddle = cast["paddle"][0]
         bricks = cast["brick"]
         marquee = cast["marquee"][0]
-        self._handle_bricks()
-        self._handle_paddle()
-        self._handle_ball_constraints()
-        self._handle_floor()
-        self._handle_paddle_constraints()
-        self._update_score(ball, bricks, marquee)
-        
-        for brick in bricks:
-            if ball.get_position().equals(brick.get_position()):
-                description = brick.get_description()
-                ball.set_text(description)
-                
+        self._handle_bricks(bricks, ball, marquee)
+        self._handle_paddle(paddle, ball)
+        self._handle_ball_constraints(ball)
+        self._handle_paddle_constraints(paddle)
+
 
     # Brian
     def _handle_paddle(self, paddle, ball):
         """This function checks to see if the ball quardanet is equal to the paddle. If it is then the ball velocity is reversed.
 
         Args:
-                paddle and ball are in the cast dictionary with lists as their key.
+            paddle and ball are in the cast dictionary with lists as their key.
         """
-        x = paddle.Point.get_x
-        y = paddle.Point.get_y
 
-        for i in range(0,11):
-            if ball.get_x().equals(Point(x,y)):
-                ball.set_velocity(Point.reverse)
-            x += i
+        for i in range(0, len(paddle.get_text())):
+            paddle_position = paddle.get_position().add(Point(i, 0))
+            # if ball.get_position().equals(paddle_position):
+            #     ball.set_velocity(ball.get_velocity().reverse())
+            if ball.get_position().equals(paddle_position) and i < 5:
+                ball.set_velocity(Point(-1,-1))
+            elif ball.get_position().equals(paddle_position) and i > 5:
+                ball.set_velocity(Point(1,-1))
+            elif ball.get_position().equals(paddle_position) and i == 5:
+                ball.set_velocity(Point(0,-1))
 
     # Vanessa
-    def _handle_bricks(self, bricks, ball):
-        pass
+    def _handle_bricks(self, bricks, ball, marquee):
         # Need to loop through each brick in bricks.
         # If the balls position is equal to bricks position, bounce ball and remove brick.
+        # bricks (list): an instance of the bricks list.
         for brick in bricks:
-            if ball.get_position().equals(brick.get_postion()):
-                description = brick.get_description()
-                ball.set_text(description)
+            if ball.get_position().equals(brick.get_position()):
+                random_number = random.randint(1,10)
+                bricks.remove(brick)
+                self._update_score(brick, marquee)
+                if random_number > 5:
+                    ball.set_velocity(ball.get_velocity().reverse())
+                else:
+                    ball.set_velocity(ball.get_velocity().reverse_y())
 
 
     # Brian
@@ -70,24 +72,14 @@ class HandleCollisionsAction(Action):
         Args:
             ball ([dict]): ball is part of dictionary with a list for its key
         """
-
-        if ball.get_x() <=  0:
-            ball.set_velocity(Point.reverse_x())
-        elif ball.get_x() >= constants.MAX_X:
-            ball.set_velocity(Point.reverse_x())
-        elif ball.get_y()  >= 0 +1:
-            ball.set_velocity(Point.reverse_y())
-
-
-
-    # Brian
-    def _handle_floor(self, ball):
-        """This function determines if the ball falls below the paddle and the game is over.
-
-        Args:
-            ball ([dict]): ball is part of the cast dictionary with a list for its key
-        """
-        if ball.get_y() >= constants.MAX_Y + 1:
+        position = ball.get_position()
+        x = position.get_x()
+        y = position.get_y()
+        if x ==  0 or x == constants.MAX_X:
+            ball.set_velocity(ball.get_velocity().reverse_x())
+        if y == 0:
+            ball.set_velocity(ball.get_velocity().reverse_y())
+        if y == constants.MAX_Y:
             sys.exit()
 
 
@@ -99,29 +91,25 @@ class HandleCollisionsAction(Action):
             Args:
                 paddle ([dict]): paddle is part of the cast dictionary with a list for its key
         """
-        paddle_x = paddle.get_x()
-        x = int(constants.MAX_X - 1)
-        y = int(constants.MAX_Y - 1)
+        position = paddle.get_position()
+        x = position.get_x()
 
-        if paddle_x < 0:
-            paddle.set_position(0, y)
-        elif paddle_x > x - 10:
-            paddle.set_position(x, y)
-            
+        if x < 0:
+            paddle.set_position(Point(0, constants.MAX_Y - 1))
+        if x > constants.MAX_X - len(paddle.get_text()):
+            paddle.set_position(Point(69, constants.MAX_Y - 1))
 
     # Needs to get the position of the paddle.
     # Compare paddle to 0.
     # less then zero set paddle start back to zero
     # If the paddle became more then 69 then reset back to 69
 
-    def _update_score(self, ball, bricks, marquee):
+    def _update_score(self, brick, marquee):
         """This function gets the point value from the brick and adds it to the score. Then updates the marquee.
 
             Args:
                 marquee ([dict]): marquee is part of the cast dictionary with a list for its key
         """
-        for brick in bricks:
-            if ball.get_position().equals(brick.get_position()):
-                points = brick.get_points()
-                marquee.add_points(points)
-                marquee.set_text(marquee.get_points())
+        points = brick.get_points()
+        marquee.add_points(points)
+        marquee.set_text(marquee.get_points())

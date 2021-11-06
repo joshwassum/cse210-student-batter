@@ -22,7 +22,6 @@ class Actor:
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
 
-    
 
     def get_position(self):
         """Gets the actor's position in 2d space.
@@ -71,15 +70,6 @@ class Actor:
             position (Point): The given velocity.
         """
         self._velocity = velocity
-
-    def set_tag(self, text):
-        """Updates the tag of our dictionary items.
-
-        Args:
-            text ([str]): The string to set the tag to.
-        """
-
-        self._tag = text
     
     def get_points(self):
         """Gets the actor's point value.
