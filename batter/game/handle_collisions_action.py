@@ -106,18 +106,17 @@ class HandleCollisionsAction(Action):
         if x < 0:
             paddle.set_position(Point(0, constants.MAX_Y - 1))
         if x > constants.MAX_X - len(paddle.get_text()):
-            paddle.set_position(Point(69, constants.MAX_Y - 1))
+            paddle.set_position(Point(constants.MAX_X - len(paddle.get_text()), constants.MAX_Y - 1))
 
-    # Needs to get the position of the paddle.
-    # Compare paddle to 0.
-    # less then zero set paddle start back to zero
-    # If the paddle became more then 69 then reset back to 69
 
     def _update_score(self, brick, marquee):
-        """This function gets the point value from the brick and adds it to the score. Then updates the marquee.
+        """This function gets the point value from the brick and adds it to the score. Then sets value of points
+            to the marquee.
 
             Args:
-                marquee ([dict]): marquee is part of the cast dictionary with a list for its key
+                marquee (Actor): marquee is an instance of Actor
+                brick (Actor): brick is an instance of Actor
+                points (integer): point value from Actor
         """
         points = brick.get_points()
         marquee.add_points(points)

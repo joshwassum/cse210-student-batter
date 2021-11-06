@@ -26,8 +26,7 @@ class MoveActorsAction(Action):
 
     def _move_actor(self, actor):
         """Moves the given actor to its next position according to its
-        velocity. Will wrap the position from one side of the screen to the
-        other when it reaches the edge in either direction.
+        velocity. 
 
         Args:
             actor (Actor): The actor to move.
