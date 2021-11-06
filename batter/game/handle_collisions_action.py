@@ -31,10 +31,12 @@ class HandleCollisionsAction(Action):
 
     # Brian
     def _handle_paddle(self, paddle, ball):
-        """This function checks to see if the ball quardanet is equal to the paddle. If it is then the ball velocity is reversed.
+        """This function loops through the paddle text's quadrants and the ball's quadrants to see if they are the same. If True the ball velocity is changed.
 
         Args:
-            paddle and ball are in the cast dictionary with lists as their key.
+            paddle (Actor): An instance of the Actor class.
+            self (Handle_collisions_Action): An instance of Handle_Collisions_Action
+            ball (Actor): is an instance of the Actor class
         """
 
         for i in range(0, len(paddle.get_text())):
@@ -76,10 +78,11 @@ class HandleCollisionsAction(Action):
     # Brian
     def _handle_ball_constraints(self, ball):
         """
-        This function determines if the ball hits the walls or ceiling and reverse the direction of the ball
+        This function determines if the ball hits the walls,ceiling, or floor and reverse the direction of the ball or ends the game.
 
         Args:
-            ball ([dict]): ball is part of dictionary with a list for its key
+            ball (Actor): is an instance of the Actor class
+            self (Handle_collisions_Action): An instance of Handle_Collisions_Action
         """
         position = ball.get_position()
         x = position.get_x()
@@ -95,10 +98,11 @@ class HandleCollisionsAction(Action):
     # Brian
     def _handle_paddle_constraints(self, paddle):
 
-        """This function will loop through the paddle location plus 11 to see if the ball hits the paddle.
+        """This function keeps the paddle inside the walls of the game.
 
             Args:
-                paddle ([dict]): paddle is part of the cast dictionary with a list for its key
+                paddle (Actor): An instance of the Actor class.
+                self (Handle_collisions_Action): An instance of Handle_Collisions_Action
         """
         position = paddle.get_position()
         x = position.get_x()
