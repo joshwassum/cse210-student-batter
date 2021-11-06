@@ -50,9 +50,18 @@ class HandleCollisionsAction(Action):
 
     # Vanessa
     def _handle_bricks(self, bricks, ball, marquee):
-        # Need to loop through each brick in bricks.
-        # If the balls position is equal to bricks position, bounce ball and remove brick.
-        # bricks (list): an instance of the bricks list.
+        """handle_brick first loops through all the bricks and if the ball touches a brick
+        the brick is removed.
+        Then the ball will get the velocity to a reverse  or reverse_y randomly to change ball  direction.
+
+        Args:
+            Self (instance): Is an instance of HandleCollisionsAction class.
+            Brick (list):Is an instance of the brick list.
+            Ball (instance): Is an instance of Actor.
+            marquee (instance): Is an istance of Actor.
+
+        """
+
         for brick in bricks:
             if ball.get_position().equals(brick.get_position()):
                 random_number = random.randint(1,10)
