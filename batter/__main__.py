@@ -1,6 +1,3 @@
-    """Puprose of main is to gather together the various game requirements and put them into a cast.
-    """
-
 from game import constants
 from game.director import Director
 from game.actor import Actor
