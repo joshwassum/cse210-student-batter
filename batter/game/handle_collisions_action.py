@@ -29,10 +29,7 @@ class HandleCollisionsAction(Action):
         self._handle_floor()
         self._handle_paddle_constraints()
         self._update_score(ball, bricks, marquee)
-        for brick in bricks:
-            if ball.get_position().equals(brick.get_position()):
-                description = brick.get_description()
-                ball.set_text(description)
+        
 
     # Brian
     def _handle_paddle(self, paddle, ball):
@@ -54,6 +51,11 @@ class HandleCollisionsAction(Action):
         pass
         # Need to loop through each brick in bricks.
         # If the balls position is equal to bricks position, bounce ball and remove brick.
+        for brick in bricks:
+            if ball.get_position().equals(brick.get_postion()):
+                description = brick.get_description()
+                ball.set_text(description)
+
 
     # Brian
     def _handle_ball_constraints(self, ball):
